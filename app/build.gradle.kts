@@ -28,7 +28,14 @@ android {
     buildFeatures {
         compose = true
     }
-}
+
+    externalNativeBuild {
+        cmake {
+            path = file("CMakeLists.txt")
+            version = "3.22.1"
+        }
+     }
+     }
 
 dependencies {
     implementation(platform("androidx.compose:compose-bom:2024.12.01"))
