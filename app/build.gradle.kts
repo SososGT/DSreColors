@@ -1,3 +1,4 @@
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -14,6 +15,17 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "0.1-prototype"
+
+        externalNativeBuild {
+            cmake {
+                cppFlags += "-std=c++17"
+                arguments += listOf("-DANDROID_STL=c++_shared")
+            }
+        }
+
+        ndk {
+            abiFilters += listOf("arm64-v8a", "armeabi-v7a")
+        }
     }
 
     compileOptions {
@@ -34,8 +46,8 @@ android {
             path = file("CMakeLists.txt")
             version = "3.22.1"
         }
-     }
-     }
+    }
+}
 
 dependencies {
     implementation(platform("androidx.compose:compose-bom:2024.12.01"))
